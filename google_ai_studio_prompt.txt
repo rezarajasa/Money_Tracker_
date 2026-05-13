@@ -1,0 +1,49 @@
+import 'package:intl/intl.dart';
+
+class MoneyFormatter {
+  static const Map<String, String> _symbols = {
+    'IDR': 'Rp',
+    'USD': '\$',
+    'EUR': '€',
+    'GBP': '£',
+    'JPY': '¥',
+    'SAR': '﷼',
+    'AED': 'د.إ',
+    'SGD': 'S\$',
+    'MYR': 'RM',
+    'AUD': 'A\$',
+    'CAD': 'C\$',
+    'CHF': 'CHF ',
+    'CNY': '¥',
+    'HKD': 'HK\$',
+    'KRW': '₩',
+    'THB': '฿',
+    'INR': '₹',
+    'PHP': '₱',
+    'VND': '₫',
+    'TRY': '₺',
+  };
+
+  static String format(num value, {String currency = 'IDR'}) {
+    final code = currency.toUpperCase();
+    final decimalDigits = code == 'IDR' || code == 'JPY' || code == 'KRW' || code == 'VND' ? 0 : 2;
+    final formatter = NumberFormat.currency(
+      locale: 'id_ID',
+      symbol: _symbols[code] ?? '$code ',
+      decimalDigits: decimalDigits,
+    );
+    return formatter.format(value);
+  }
+
+  static String idr(num value) => format(value, currency: 'IDR');
+
+  static String rate(num value) {
+    final formatter = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp', decimalDigits: value < 100 ? 2 : 0);
+    return formatter.format(value);
+  }
+
+  static String number(num value, {int decimalDigits = 2}) {
+    final formatter = NumberFormat.decimalPatternDigits(locale: 'id_ID', decimalDigits: decimalDigits);
+    return formatter.format(value);
+  }
+}
