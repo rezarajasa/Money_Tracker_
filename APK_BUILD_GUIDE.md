@@ -1,46 +1,97 @@
-Lanjutkan dan sempurnakan aplikasi Flutter Money Tracker Pro bernama RapiKas.
+# Panduan Membuat APK RapiKas Money Tracker
 
-Project ini sudah memiliki starter code Flutter dan Supabase. Tugas Anda adalah membuat aplikasi Android APK production-ready dengan fitur berikut:
+Paket ini berisi source code aplikasi **RapiKas Money Tracker** dan script otomatis untuk membuild menjadi file `.apk`.
 
-1. Auth Supabase: login email, Google login, reset password.
-2. Dashboard total saldo setara IDR.
-3. Multi-wallet: cash, bank, e-wallet, tabungan, kartu kredit, investasi, dan dompet valas.
-4. Multi-currency: wallet dan transaksi dapat memakai mata uang berbeda.
-5. Fitur Kurs & Valas:
-   - daftar mata uang populer dan lengkap,
-   - kurs beli, kurs jual, kurs tengah,
-   - konverter mata uang,
-   - riwayat kurs,
-   - update kurs otomatis dari Supabase Edge Function,
-   - pilihan provider kurs,
-   - mode input kurs manual.
-6. Transaksi income, expense, dan transfer antar wallet.
-7. Kategori dengan icon dan warna.
-8. Budget bulanan per kategori.
-9. Laporan harian, mingguan, bulanan, tahunan.
-10. Export PDF/CSV/Excel.
-11. Utang, piutang, tagihan, cicilan, target keuangan.
-12. Upload foto struk ke Supabase Storage.
-13. AI financial insight untuk ringkasan dan saran penghematan.
-14. Offline-first dengan local database dan sync ke Supabase.
-15. Keamanan PIN dan biometric.
-16. Dark mode, light mode, dan multi-language Indonesia/English/Arabic.
+## Yang perlu diinstall
 
-Desain UI:
-- Modern, minimalist, Apple-like
-- Clean cards, soft shadow, rounded corners
-- Bottom navigation: Home, Transaksi, Budget, Laporan, Kurs, Profil
-- Warna utama hijau finansial / teal premium
-- Mobile-first, smooth, dan mudah dipahami
+1. Flutter SDK
+2. Android Studio
+3. Android SDK / Command-line Tools dari Android Studio
+4. Git, jika diminta Flutter
 
-Gunakan schema Supabase:
-- supabase/schema.sql
-- supabase/currency_schema.sql
+## Cara paling mudah di Windows
 
-Gunakan Edge Function:
-- supabase/functions/update-currency-rates/index.ts
+1. Extract file ZIP ini.
+2. Buka folder hasil extract.
+3. Klik dua kali file:
 
-Pastikan service_role key tidak pernah dimasukkan ke aplikasi Android. Gunakan service_role hanya di Edge Function.
+```text
+BUILD_APK_WINDOWS.bat
+```
 
+4. Tunggu proses selesai.
+5. File APK akan muncul di:
 
-Tambahkan/pertahankan fitur autentikasi lengkap: Login email/password, register, lupa password, Google OAuth melalui Supabase Auth, session persistence, deep link callback Android, dan proteksi data berdasarkan user_id dengan RLS.
+```text
+build\app\outputs\flutter-apk\app-release.apk
+```
+
+## Cara macOS/Linux
+
+Buka Terminal di folder project, lalu jalankan:
+
+```bash
+chmod +x BUILD_APK_MAC_LINUX.sh
+./BUILD_APK_MAC_LINUX.sh
+```
+
+Hasil APK:
+
+```text
+build/app/outputs/flutter-apk/app-release.apk
+```
+
+## Jika muncul error Android license
+
+Jalankan:
+
+```bash
+flutter doctor --android-licenses
+```
+
+Tekan `y` sampai selesai.
+
+## Jika ingin test di HP sebelum build
+
+1. Aktifkan Developer Options di HP Android.
+2. Aktifkan USB Debugging.
+3. Sambungkan HP ke laptop.
+4. Jalankan:
+
+```bash
+flutter run
+```
+
+Atau di Windows klik:
+
+```text
+RUN_DEBUG_WINDOWS.bat
+```
+
+## Setup Supabase
+
+1. Masuk Supabase Dashboard.
+2. Buka SQL Editor.
+3. Jalankan file:
+
+```text
+supabase/schema.sql
+```
+
+4. Ambil `Project URL` dan `anon public key`.
+5. Masukkan ke file:
+
+```text
+lib/config/app_config.dart
+```
+
+Bagian:
+
+```dart
+static const String supabaseUrl = 'https://your-project.supabase.co';
+static const String supabaseAnonKey = 'your-anon-key';
+```
+
+## Catatan penting
+
+Paket ini adalah **source code aplikasi siap-build**. File APK final hanya bisa dibuat di komputer yang sudah memiliki Flutter dan Android SDK, karena proses build Android membutuhkan toolchain tersebut.

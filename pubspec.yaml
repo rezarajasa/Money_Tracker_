@@ -1,0 +1,33 @@
+name: rapikas_money_tracker
+version: 1.0.0+1
+publish_to: 'none'
+
+description: A complete modern money tracker app starter built with Flutter and Supabase.
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  supabase_flutter: ^2.5.6
+  intl: ^0.19.0
+  uuid: ^4.4.2
+  shared_preferences: ^2.3.2
+  sqflite: ^2.3.3+1
+  path_provider: ^2.1.4
+  local_auth: ^2.3.0
+  image_picker: ^1.1.2
+  flutter_local_notifications: ^17.2.3
+  csv: ^6.0.0
+  pdf: ^3.11.1
+  printing: ^5.13.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
