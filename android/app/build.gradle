@@ -24,7 +24,8 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.rezarajasa.rapikas"
-    compileSdk flutter.compileSdkVersion
+    compileSdk 35
+    buildToolsVersion "35.0.0"
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -44,7 +45,7 @@ android {
     defaultConfig {
         applicationId "com.rezarajasa.rapikas"
         minSdkVersion 23
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
